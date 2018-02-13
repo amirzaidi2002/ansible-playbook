@@ -32,3 +32,5 @@
     esxi:
       datacenter: Vista Station
       hostname: esx6.mozy.lab.emc.com
+- debug:
+    msg: "System finsihed executing job"   
