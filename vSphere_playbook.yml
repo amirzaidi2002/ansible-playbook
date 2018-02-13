@@ -1,0 +1,7 @@
+---
+- vsphere_guest:
+   vcenter_hostname: vc.dpc.lab.emc.com
+   username: vsphere.local/ansible
+   password: ansible01!
+   guest: mounika-ansibletest
+   vmware_guest_facts: yes
