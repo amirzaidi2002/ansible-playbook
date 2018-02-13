@@ -1,7 +1,30 @@
 ---
-- name: Hello World - Custom
-  hosts: all
+- name: Create access token from auth0
+  hosts: localhost
+  gather_facts: no
+  vars:
+    auth0url: zaidia1.auth0.com
+    api_version: "1.6"
+    client_id: "oYpu4fuPrXnfwtf1gq8foBtHdrDo0g5n"
+    client_secret: "gpfXVHnflwdvN8QOcZyxpuM6M0X1yQ0THz3KoToepgO1VxC2nLpS-xlwSNATRQ-i"
+    audience: "https://zaidia1.auth0.com/api/v2/"
+    grant_type: "client_credentials"
+
   tasks:
-    - name: Hello Message
-      debug:
-        msg: "Hello Ansible Tower!"
+    - name: get token
+      uri:
+        url: https://{{ auth0url }}/oauth/token
+        method: POST
+        validate_certs: no
+        return_content: yes
+        body:
+          client_id: "{{ client_id }}"
+          client_secret: "{{ client_secret }}"
+          audience: "{{ audience }}"
+          grant_type: "{{ grant_type }}"
+
+        body_format: json
+      register: token
+
+    - name: display token
+      debug: msg="{{  token.json }}"
