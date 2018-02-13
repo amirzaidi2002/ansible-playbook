@@ -1,36 +1,7 @@
 ---
-- vsphere_guest:
-    vcenter_hostname: vc.dpc.lab.emc.com
-    username: vsphere.lacal/ansible
-    password: ansible01!
-    cluster: QA-Jenkins
-    guest: mounika-ansibletest
-    state: powered_on
-    vm_extra_config:
-      vcpu.hotadd: yes
-      mem.hotadd:  yes
-      notes: This is a test VM
-      folder: Mounika-ansibletest
-    vm_disk:
-      disk1:
-        size_gb: 20
-        type: thin
-        datastore: QA
-    vm_nic:
-      nic1:
-        type: vmxnet3
-        network: mozy.lab.emc.com-vlan240
-        network_type: distributed
-    vm_hardware:
-      memory_mb: 4096
-      num_cpus: 2
-      osid: ubuntu64guest
-      scsi: paravirtual
-    vm_cdrom:
-        type: "iso"
-        iso_path: "ISO_Storage/Ubuntu/ubuntu-16.04.3-server-amd64.iso"
-    esxi:
-      datacenter: Vista Station
-      hostname: esx6.mozy.lab.emc.com
-- debug:
-    msg: "System finsihed executing job"   
+- name: Hello World - Custom
+  hosts: all
+  tasks:
+    - name: Hello Message
+      debug:
+        msg: "Hello Ansible Tower!"
